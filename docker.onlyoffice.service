@@ -1,0 +1,15 @@
+[Unit]
+Description=JclicReports Service
+After=docker.service
+Requires=docker.service
+ 
+[Service]
+TimeoutStartSec=0
+#Restart=always
+ExecStartPre=-/usr/bin/docker stop onlyoffice
+ExecStartPre=-/usr/bin/docker rm onlyoffice 
+ExecStartPre=/usr/bin/docker pull onlyoffice/documentserver
+ExecStart=/usr/bin/docker run -i -t -d --name onlyoffice -p 10445:443 --restart=always -v /srv/app/onlyoffice/DocumentServer/logs:/var/log/onlyoffice -v /srv/app/onlyoffice/DocumentServer/data:/var/www/onlyoffice/Data -v /srv/app/onlyoffice/DocumentServer/lib:/var/lib/onlyoffice -v /srv/app/onlyoffice/DocumentServer/db:/var/lib/postgresql linkat/onlyoffice 
+ 
+[Install]
+WantedBy=multi-user.target

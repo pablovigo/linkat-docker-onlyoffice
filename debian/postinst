@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ ! -d /srv/app/onlyoffice/DocumentServer/data/certs ]; then
+	sudo mkdir -p /srv/app/onlyoffice/DocumentServer/data/certs
+	sudo mkdir -p /srv/app/onlyoffice/DocumentServer/logs
+	sudo mkdir -p /srv/app/onlyoffice/DocumentServer/lib
+	sudo mkdir -p /srv/app/onlyoffice/DocumentServer/db
+fi
+##Generar certificat autosignat
+if [ ! -f /srv/app/onlyoffice/DocumentServer/data/certs/onlyoffice.crt ]; then
+	sudo openssl req -x509 -nodes -days 3650 \
+		-newkey rsa:2048 \
+		-keyout /srv/app/onlyoffice/DocumentServer/data/certs/onlyoffice.key \
+		-out /srv/app/onlyoffice/DocumentServer/data/certs/onlyoffice.crt \
+		-subj "/C=ES/ST=Catalunya/L=Barcelona/O=Generalitat de Catalunya/OU=Departament Ensenyament/CN=xtec.cat"
+	cd /srv/app/onlyoffice/DocumentServer/data/certs/
+	openssl dhparam -out dhparam.pem 2048 > /dev/null 2>&1
+fi
+
+sudo systemctl enable docker.onlyoffice.service

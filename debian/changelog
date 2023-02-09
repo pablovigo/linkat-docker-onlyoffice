@@ -1,0 +1,5 @@
+linkat-docker-onlyoffice (18.04-5) bionic; urgency=medium
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Pablo Vigo <pvigo@xtec.cat>  Fri, 23 Nov 2018 09:57:34 +0100

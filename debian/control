@@ -1,0 +1,13 @@
+Source: linkat-docker-onlyoffice
+Section: linkat
+Priority: optional
+Maintainer: Pablo Vigo <pvigo@xtec.cat>
+Build-Depends: debhelper (>= 10)
+Standards-Version: 4.1.2
+Homepage: http://linkat.xtex.cat
+
+Package: linkat-docker-onlyoffice
+Architecture: all
+Depends: linkat-docker 
+Description: Contenidor docker de l'Onlyoffice DocumentServer 
+ Contenidor Docker de l'Onlyoffice DocumentServer per a la Linkat edu
